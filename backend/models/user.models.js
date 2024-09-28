@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
       default: Date.now,
     },
     isVerified: {
-      Boolean: true,
+      type:Boolean,
       default: false,
     },
     resetPasswordToken: String,
@@ -31,4 +31,4 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const user = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", userSchema);
