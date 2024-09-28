@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# MONGO_URI=mongodb+srv://yashdcrazy:CwfajWTkMwOTffKG@cluster0.joo2f.mongodb.net/auth_db?retryWrites=true&w=majority&appName=Cluster0
+# PORT=5000
+# jwt_secret=mysecretkey
+# MAILTRAP_TOKEN=749d15a291b9d89802601ffc4020f075
