@@ -12,9 +12,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
-//  => {
-//   res.send("Hello World 1223@");
-// });
 
 app.listen(3000, () => {
   connectdb();
