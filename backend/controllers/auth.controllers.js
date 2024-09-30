@@ -130,7 +130,7 @@ try{
   const resetTokenExpiresAt= Date.now()+1*60*60*1000; //1 hour
 
   user.resetPasswordToken = resetToken;
-  user.resetTokenExpiresAt = resetTokenExpiresAt;
+  user.resetPasswordExpiresAt = resetTokenExpiresAt;
 
   await user.save();
 
