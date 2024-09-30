@@ -3,7 +3,7 @@ import bcryptjs from "bcryptjs";
 import crypto from "crypto";
 import { sendVerificationEmail } from "../mailtrap/emails.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
-import { sendWelcomeEmail } from "../mailtrap/emails.js";
+import { sendWelcomeEmail, sendPasswordResetEmail } from "../mailtrap/emails.js";
 
 export const signup = async (req, res) => {
   const { email, password, name } = req.body;
@@ -122,7 +122,7 @@ export const logout = async (req, res) => {
 export const forgotPassword = async(req, res)=>{
 const {email} = req.body;
 try{
-  const user = User.findOne(email);
+  const user = await User.findOne({email});
   if(!user){
     res.status(400).json({success:false, message:"User Doesn't Exist"})
   }
@@ -137,8 +137,8 @@ try{
   // Send Email
 
   await sendPasswordResetEmail(user.email, `${process.env.CLIENT_URL}/reset-password/${resetToken}`)
-
+  res.status(200).json({success:true, message:"Reset Email Sent Successfully"})
 }catch(error){
-
+  res.status(400).json({success:false, message:"Reset Email Not sent"})
 }
 }

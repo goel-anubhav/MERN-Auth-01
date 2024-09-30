@@ -56,8 +56,10 @@ export const sendPasswordResetEmail = async(email, resetURL)=>{
             html: PASSWORD_RESET_REQUEST_TEMPLATE.replace("{resetURL}", resetURL),
             category:"Password Reset"
         })
-        resetURL.status(200).json({success:false, message:"Reset Email sent Successfully"})
+    
     } catch(error){
-        resetURL.status(400).json({success:false, message:"Reset Email Not sent"})
+
+        console.error(`Error Sending Verification`, error)
+        throw new error(`Error Sending Verification: ${error}` )
     }
 }
