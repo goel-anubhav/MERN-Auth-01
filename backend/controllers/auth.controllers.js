@@ -2,6 +2,7 @@ import { User } from "../models/user.models.js";
 import bcryptjs from "bcryptjs";
 import { sendVerificationEmail } from "../mailtrap/emails.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
+import { sendWelcomeEmail } from "../mailtrap/emails.js";
 
 export const signup = async (req, res) => {
   const { email, password, name } = req.body;
@@ -76,7 +77,9 @@ export const verifyEmail = async (req, res) => {
         password: undefined,
       },
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).json({message:"Server Not Responding"})
+  }
 };
 
 export const login = async (req, res) => {
