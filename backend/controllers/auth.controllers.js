@@ -142,3 +142,19 @@ try{
   res.status(400).json({success:false, message:"Reset Email Not sent"})
 }
 }
+
+
+
+// ------------------------ Pendinf ----------------
+export const resetPassword = async(req, res)=>{
+  try {
+    const {token} = req.params;
+    const {password} = req.body;
+
+    const user = await User.findOne({
+      resetPasswordToken
+    })
+  } catch (error) {
+    
+  }
+}
