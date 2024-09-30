@@ -15,7 +15,7 @@ const sender = {
 };
 const recipients = [
   {
-    email: "pepelo4763@abatido.com",
+    email: "hemoya3286@sgatra.com",
   }
 ];
 
