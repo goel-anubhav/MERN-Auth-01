@@ -1,7 +1,7 @@
 import { User } from "../models/user.models.js";
 import bcryptjs from "bcryptjs";
 import crypto from "crypto";
-import { sendVerificationEmail } from "../mailtrap/emails.js";
+import { sendResetSuccessEmail, sendVerificationEmail } from "../mailtrap/emails.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
 import { sendWelcomeEmail, sendPasswordResetEmail } from "../mailtrap/emails.js";
 
@@ -145,16 +145,30 @@ try{
 
 
 
-// ------------------------ Pendinf ----------------
 export const resetPassword = async(req, res)=>{
   try {
     const {token} = req.params;
     const {password} = req.body;
 
     const user = await User.findOne({
-      resetPasswordToken
+      resetPasswordToken: token,
+      resetPasswordExpiresAt: {$gt: Date.now()},
+
     })
+
+    if(!user){
+      res.status(400).json({success:false, message:"The User doesn't exists or Token Expired/Invalid"})
+    }
+    const hashedPassword = await bcryptjs.hash(password, 10)
+    user.password = hashedPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpiresAt = undefined;
+    await user.save();
+
+    await sendResetSuccessEmail(user.email);
+    res.status(200).json({success: true, message:"Reset PassWord SuccessFull"})
   } catch (error) {
-    
+    console.log("PassWord Reset Error occured:", error)
+    res.status(400).json({success:false, message:"Error In reset password"})
   }
 }

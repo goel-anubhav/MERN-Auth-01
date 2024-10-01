@@ -3,6 +3,7 @@ import { login, signup, logout, verifyEmail, forgotPassword, resetPassword } fro
 
 const router = express.Router();
 
+// router.get("/check-auth", verifyToken, checkAuth)
 router.post("/signup", signup);
 router.get("/login", login);
 router.get("/logout", logout);
