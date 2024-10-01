@@ -1,8 +1,8 @@
 import React from "react";
 import FloatingCircle from "./components/FloatingShape/FloatingCircle";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LoginPage from "./components/Pages/LoginPage";
-import SignUpPage from "./components/Pages/SignUpPage";
+import LoginPage from "./Pages/LoginPage";
+import SignUpPage from "./Pages/SignUpPage";
 
 function App() {
   return (
