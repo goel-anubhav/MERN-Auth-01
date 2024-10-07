@@ -30,5 +30,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-// ----------------------------- Login Page Updating ----------------
