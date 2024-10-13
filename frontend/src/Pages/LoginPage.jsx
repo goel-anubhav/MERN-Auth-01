@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { mail, Lock, Loader } from "lucide-react";
-import { Link } from "react-router-dom";
+// import { mail, Lock, Loader } from "lucide-react";
+// import { Link } from "react-router-dom";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleLogin = (e) => {
-    e.preventDefault();
-  };
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  // };
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
