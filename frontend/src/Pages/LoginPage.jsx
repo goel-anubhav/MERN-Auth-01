@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-// import { mail, Lock, Loader } from "lucide-react";
-// import { Link } from "react-router-dom";
+import { Mail, Lock, Loader } from "lucide-react";
+import Input from "../components/Input";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  // };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = (e) => {
+    e.preventDefault();
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,6 +25,44 @@ const LoginPage = () => {
         >
           Welcome Back
         </h2>
+
+        <form onSubmit={handleLogin}>
+          <Input
+            icon={Mail}
+            type="email"
+            placeholder="Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <Input
+            icon={Mail}
+            type="password"
+            placeholder="password"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <div className="flex items-center mb-6">
+            <Link
+              to="/forgot-password"
+              className="text-sm text-green-400 hover:underline"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold
+            rounded-lg shadow-lg hover:to-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 
+            focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-100 transition duration-200"
+            type="sumbit"
+          >
+            {" "}
+            Login{" "}
+          </motion.button>
+        </form>
       </div>
     </motion.div>
   );
