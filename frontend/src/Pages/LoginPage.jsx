@@ -64,6 +64,15 @@ const LoginPage = () => {
           </motion.button>
         </form>
       </div>
+      <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center">
+        <p className="text-sm text-gray-400">
+          Don't Have An Account?{" "}
+          <Link to="/signup " className="text-green-400 hover:underline">
+            {" "}
+            Sign Up
+          </Link>
+        </p>
+      </div>
     </motion.div>
   );
 };
