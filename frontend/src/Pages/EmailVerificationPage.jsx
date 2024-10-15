@@ -26,8 +26,6 @@ const EmailVerificationPage = () => {
         newCode[i] = pastedCode[i] || "";
       }
       setCode(newCode);
-
-      // Focus on the last non-empty input or the first empty one
       const lastFilledIndex = newCode.findLastIndex((digit) => digit !== "");
       const focusIndex = lastFilledIndex < 5 ? lastFilledIndex + 1 : 5;
       inputRefs.current[focusIndex].focus();
@@ -35,12 +33,16 @@ const EmailVerificationPage = () => {
   };
 
   const handleKeyDown = (index, e) => {
-    if (e.key === "Backspace" && !code[index] && index > 0) {
-      // Move focus to the previous input if current one is empty and Backspace is pressed
-      inputRefs.current[index - 1].focus();
+    if (e.key === "Backspace") {
+      if (!code[index] && index > 0) {
+        inputRefs.current[index - 1].focus();
+      } else {
+        const newCode = [...code];
+        newCode[index] = "";
+        setCode(newCode);
+      }
     }
   };
-
   const isLoading = false;
 
   return (
