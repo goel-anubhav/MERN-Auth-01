@@ -3,6 +3,7 @@ import FloatingCircle from "./components/FloatingShape/FloatingCircle";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LoginPage from "./Pages/LoginPage";
 import SignUpPage from "./Pages/SignUpPage";
+import EmailVerificationPage from "./Pages/EmailVerificationPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<div> Home</div>} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/verify-email" element={<EmailVerificationPage />} />
         </Routes>
       </Router>
     </div>
