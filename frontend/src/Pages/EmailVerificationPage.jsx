@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -43,6 +43,18 @@ const EmailVerificationPage = () => {
       }
     }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const VerifiactionCode = code.join("");
+    console.log(`Verification Code Submitted: ${VerifiactionCode}`);
+  };
+
+  useEffect(() => {
+    if (code.every((digit) => digit !== "")) {
+      handleSubmit(new Event("Submit"));
+    }
+  }, [code]);
   const isLoading = false;
 
   return (
@@ -67,7 +79,7 @@ const EmailVerificationPage = () => {
           Enter the 6-digit code received on your email
         </p>
 
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="flex justify-between">
             {code.map((digit, index) => (
               <input
