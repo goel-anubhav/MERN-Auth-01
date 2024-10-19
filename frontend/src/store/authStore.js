@@ -4,6 +4,7 @@ import axios from "axios";
 const API_URL = "http://localhost:5000/api/auth";
 
 axios.defaults.withCredentials = true;
+
 export const useAuthStore = create((set) => ({
   user: null,
   isAuthenticated: false,
@@ -12,7 +13,7 @@ export const useAuthStore = create((set) => ({
   isCheckingAuth: true,
 
   signup: async (email, password, name) => {
-    set({ isLoading: true, error: null });
+    set({ isLoading: true, error: null, isCheckingAuth: true });
     try {
       const response = await axios.post(`${API_URL}/signup`, {
         email,
@@ -23,13 +24,18 @@ export const useAuthStore = create((set) => ({
         user: response.data.user,
         isAuthenticated: true,
         isLoading: false,
+        isCheckingAuth: false,
       });
+      return response.data.user;
     } catch (error) {
+      const errorMessage =
+        error.response?.data?.message || error.message || "Error Signup";
       set({
-        error: error.response?.data?.message || error.message || "Error Signup",
+        error: errorMessage,
         isLoading: false,
+        isCheckingAuth: false,
       });
-      throw error;
+      return { error: errorMessage };
     }
   },
 }));
